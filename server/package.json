@@ -49,6 +49,7 @@
         "passport-facebook": "^3.0.0",
         "passport-google-oauth20": "^2.0.0",
         "passport-local": "^1.0.0",
+        "stripe": "^8.126.0",
         "ts-node": "^9.0.0"
     }
 }

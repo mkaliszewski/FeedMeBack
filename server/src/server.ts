@@ -5,6 +5,7 @@ import passport from 'passport';
 
 const authRouter = require('./routes/authRoutes');
 const userRouter = require('./routes/userRoutes');
+const paymentRouter = require('./routes/paymentRoutes');
 
 require('./models/userModel');
 require('./services/authService');
@@ -35,6 +36,7 @@ app.use(passport.session());
 
 app.use('/auth', authRouter);
 app.use('/api/user', userRouter);
+app.use('/api/stripe', paymentRouter);
 
 app.use((error: Error, req: Request, res: Response, _next: NextFunction) => {
     return res.status(500).send({ errorMessage: error.toString() });

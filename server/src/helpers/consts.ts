@@ -11,6 +11,7 @@ const RESPONSE_MESSAGES = {
     CREATED: 'Created',
     UPDATED: 'Updated',
     DELETED: 'Deleted',
+    NOT_LOGGED_IN: 'User is not logged in',
     NOT_FOUND: 'Not found',
     ALREADY_EXISTS: 'This user already exists',
     ERROR: 'Something went wrong!',
@@ -22,6 +23,7 @@ const RESPONSE_STATUSES = {
     RESPONSE_MESSAGES.UPDATED ||
     RESPONSE_MESSAGES.DELETED]: 200,
     [RESPONSE_MESSAGES.CREATED]: 201,
+    [RESPONSE_MESSAGES.NOT_LOGGED_IN]: 403,
     [RESPONSE_MESSAGES.NOT_FOUND]: 404,
     [RESPONSE_MESSAGES.ALREADY_EXISTS]: 409,
     [RESPONSE_MESSAGES.ERROR]: 500,
