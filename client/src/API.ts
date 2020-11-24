@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 export const API_ROUTES = {
-    USER: '/api/user',
     LOGIN_USER: 'auth/login',
+    USER: '/api/user',
     LOGOUT_USER: '/api/user/logout',
+    STRIPE: '/api/stripe',
 };
 
 const HEADERS = { 'Content-Type': 'application/json' };
@@ -44,6 +45,12 @@ const API = {
         fetch(API_ROUTES.LOGIN_USER, {
             method: METHODS.POST,
             body: stringifyData(data),
+            headers: HEADERS,
+        }),
+    handleStripePayment: (token: string) =>
+        fetch(API_ROUTES.STRIPE, {
+            method: METHODS.POST,
+            body: stringifyData(token),
             headers: HEADERS,
         }),
 };
