@@ -10,13 +10,17 @@ const renderLanguageSelector = (props) => {
     return { ...utils };
 };
 
+const englishText = 'EN';
+const polishText = 'PL';
+const germanyText = 'DE';
+
 const englishAlt = 'en flag icon';
 const polishAlt = 'pl flag icon';
 const germanyAlt = 'de flag icon';
 
 const englishLabel = 'language (en)';
 const polishLabel = 'language (pl)';
-const inputRole = 'combobox';
+const listBoxRole = 'listbox';
 
 describe('LanguageSelector', () => {
     it('renders without crashing', async () => {
@@ -25,18 +29,10 @@ describe('LanguageSelector', () => {
         unmount();
     });
 
-    it('has label', () => {
-        const { getByLabelText } = renderLanguageSelector();
-
-        const label = getByLabelText('language (en)');
-
-        expect(label).toBeInTheDocument();
-    });
-
-    it('has an input', () => {
+    it('has listbox', () => {
         const { getByRole } = renderLanguageSelector();
 
-        const selectInput = getByRole(inputRole);
+        const selectInput = getByRole(listBoxRole);
 
         expect(selectInput).toBeInTheDocument();
     });
@@ -49,34 +45,25 @@ describe('LanguageSelector', () => {
         expect(englishOption).toBeInTheDocument();
     });
 
-    it('opens dropdown with avaliable options after click on select input', async () => {
-        const { getByRole, getByAltText, getAllByAltText } = renderLanguageSelector();
+    it('has all avaliable options', () => {
+        const { getAllByRole, getByText, getAllByText } = renderLanguageSelector();
 
-        const selectInput = getByRole(inputRole);
+        const options = getAllByRole('option');
 
-        fireEvent.mouseDown(selectInput);
+        const englishOption = getAllByText(englishText)[1];
+        const polishOption = getByText(polishText);
+        const germanyOption = getByText(germanyText);
 
-        await waitFor(() => {
-            const englishOption = getAllByAltText(englishAlt)[1];
-            const polishOption = getByAltText(polishAlt);
-            const germanyOption = getByAltText(germanyAlt);
-
-            expect(englishOption).toBeInTheDocument();
-            expect(polishOption).toBeInTheDocument();
-            expect(germanyOption).toBeInTheDocument();
-        });
+        expect(englishOption).toBeInTheDocument();
+        expect(polishOption).toBeInTheDocument();
+        expect(germanyOption).toBeInTheDocument();
+        expect(options).toHaveLength(3);
     });
 
     it('sets active option after click on it', async () => {
-        const { getByRole, getByAltText, getByLabelText } = renderLanguageSelector();
-        let polishOption;
-        const selectInput = getByRole(inputRole);
+        const { getByText, getByLabelText } = renderLanguageSelector();
 
-        fireEvent.mouseDown(selectInput);
-
-        await waitFor(() => {
-            polishOption = getByAltText(polishAlt);
-        });
+        const polishOption = getByText(polishText);
 
         fireEvent.click(polishOption);
 

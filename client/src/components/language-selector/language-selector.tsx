@@ -1,10 +1,8 @@
-import React, { useState, FC } from 'react';
+import React, { useState, FC, SyntheticEvent } from 'react';
+import { Dropdown, Flag, DropdownProps } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { Select, Space } from 'antd';
 
 import './language-selector.styles.scss';
-
-const { Option } = Select;
 
 type Language = 'en' | 'pl' | 'de';
 
@@ -16,18 +14,36 @@ const LANGUAGES = {
 
 const { ENGLISH, POLISH, GERMAN } = LANGUAGES;
 
-const MENU_ITEMS = [
+const languageItems = [
     {
-        language: ENGLISH,
-        iconPath: '/assets/images/icons/flags/united-kingdom.svg',
+        key: ENGLISH,
+        value: ENGLISH,
+        text: (
+            <span>
+                <Flag name="gb" />
+                EN
+            </span>
+        ),
     },
     {
-        language: POLISH,
-        iconPath: '/assets/images/icons/flags/poland.svg',
+        key: POLISH,
+        value: POLISH,
+        text: (
+            <span>
+                <Flag name="pl" />
+                PL
+            </span>
+        ),
     },
     {
-        language: GERMAN,
-        iconPath: '/assets/images/icons/flags/germany.svg',
+        key: GERMAN,
+        value: GERMAN,
+        text: (
+            <span>
+                <Flag name="de" />
+                DE
+            </span>
+        ),
     },
 ];
 
@@ -53,23 +69,30 @@ const LanguageSelector: FC = () => {
 
     const [appLanguage, setAppLanguage] = useState<string>(defaultLanguage);
 
-    const handleChange = (language: string): void => {
-        setAppLanguage(language as Language);
-        localStorage.setItem('language', language);
-        i18n.changeLanguage(language);
+    const handleChange = (_event: SyntheticEvent<HTMLElement, Event>, { value }: DropdownProps) => {
+        setAppLanguage(value as Language);
+        localStorage.setItem('language', value as Language);
+        i18n.changeLanguage(value as Language);
     };
 
+    const labelText = `${t('language')} (${appLanguage})`;
+
     return (
-        <Space>
-            <label htmlFor="language-selector">{`${t('language')} (${appLanguage})`}</label>
-            <Select id="language-selector" value={appLanguage} onChange={handleChange}>
-                {MENU_ITEMS.map(({ language, iconPath }) => (
-                    <Option align="center" value={language} key={language}>
-                        <img src={iconPath} alt={`${language} flag icon`} className="language-selector__icon" />
-                    </Option>
-                ))}
-            </Select>
-        </Space>
+        <div className="language-selector">
+            <label className="language-selector__label" htmlFor="language-selector">
+                {labelText}
+            </label>
+            <Dropdown
+                id="language-selector"
+                placeholder="Select language"
+                fluid
+                selection
+                value={appLanguage}
+                options={languageItems}
+                onChange={handleChange}
+                aria-label={labelText}
+            />
+        </div>
     );
 };
 
