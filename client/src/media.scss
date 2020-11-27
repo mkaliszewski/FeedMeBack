@@ -1,0 +1,28 @@
+//breakpoints
+$breakpoint-sm: 600px;
+$breakpoint-md: 960px;
+$breakpoint-lg: 1280px;
+$breakpoint-xlg: 1920px;
+
+//media queries
+
+@mixin mediaQuery($screen) {
+    @media (min-width: $screen) {
+        @content;
+    }
+}
+
+@mixin customMediaQuery($screen) {
+    @media (min-width: $screen+'px') {
+        @content;
+    }
+}
+
+//flex box
+
+@mixin flexBox($flexDir, $justifyContent, $alignItems) {
+    display: flex !important;
+    flex-direction: $flexDir;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+}

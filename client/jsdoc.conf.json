@@ -1,0 +1,27 @@
+{
+    "tags": {
+        "allowUnknownTags": ["optional", "category", "component"],
+        "dictionaries": ["jsdoc", "closure"]
+    },
+    "source": {
+        "include": ["src"],
+        "includePattern": "\\.(ts, tsx)$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": [
+        "plugins/markdown",
+        "node_modules/better-docs/category",
+        "node_modules/better-docs/component",
+        "node_modules/better-docs/typescript"
+    ],
+    "templates": {
+        "better-docs": {
+            "name": "FeedMeBack"
+        }
+    },
+    "opts": {
+        "destination": "docs",
+        "recurse": true,
+        "readme": "README.md"
+    }
+}
