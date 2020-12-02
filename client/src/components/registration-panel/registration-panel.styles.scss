@@ -1,0 +1,38 @@
+@import '../../media.scss';
+
+.registration-panel {
+    .registration-panel__form {
+        @include flexBox(column, center, center);
+        width: 100%;
+
+        .registration-panel__form-group {
+            @include flexBox(column, center, stretch);
+            width: 90%;
+
+            .field {
+                padding: 10px 6px;
+            }
+        }
+
+        .registration-panel__submit-button {
+            min-width: 200px;
+            margin: 0;
+        }
+    }
+
+    .registration-panel__login-container {
+        text-align: center;
+        margin-top: 12px;
+
+        .registration-panel__buttons-container {
+            @include flexBox(column, center, center);
+
+            @include mediaQuery($breakpoint-md) {
+                @include flexBox(row, center, center);
+            }
+            & * {
+                margin-top: 6px;
+            }
+        }
+    }
+}

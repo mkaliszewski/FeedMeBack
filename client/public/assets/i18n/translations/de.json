@@ -1,4 +1,29 @@
 {
-    "hello": "hallo",
-    "language": "Sprache"
+    "languageSelector": {
+        "language": "Sprache"
+    },
+    "header": {
+        "about": "Über uns",
+        "login": "Einloggen",
+        "registration": "Registieren"
+    },
+    "registration": {
+        "username": "Nutzername",
+        "email": "E-mail",
+        "password": "Passwort",
+        "repeatPassword": "Passwort wiederholen",
+        "createAcc": "Registieren",
+        "hasAccount": "Wenn Sie ein Konto haben",
+        "logIn": "einloggen",
+        "or": "oder Einloggen mit",
+        "errors": {
+            "required": "Dieses Feld wird benötigt",
+            "usernameLength": "Der Benutzername sollte mindestens 8 Zeichen lang sein",
+            "passwordLength": "Das Passwort sollte mindestens 8 Zeichen lang sein",
+            "noMatch": "Passwörter stimmen nicht überein",
+            "wrongChars": "E-Mail enthält falsche Zeichen",
+            "alreadyExists": "Ein Benutzer existiert bereits mit dieser E-Mail-Adresse",
+            "default": "Bei der Registrierung ist ein Fehler aufgetreten. Versuchen Sie es später erneut."
+        }
+    }
 }

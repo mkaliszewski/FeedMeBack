@@ -1,4 +1,30 @@
 {
-    "hello": "hello",
-    "language": "Language"
+    "languageSelector": {
+        "language": "Language"
+    },
+
+    "header": {
+        "about": "About",
+        "login": "Login",
+        "registration": "Registration"
+    },
+    "registration": {
+        "username": "Username",
+        "email": "E-mail",
+        "password": "Password",
+        "repeatPassword": "Repeat password",
+        "createAcc": "Sign up",
+        "hasAccount": "If you have an account",
+        "logIn": "log in",
+        "or": "or sign in with",
+        "errors": {
+            "required": "This field is required",
+            "usernameLength": "Username should have at least 8 characters",
+            "passwordLength": "Password should have at least 8 characters",
+            "noMatch": "Passwords don't match",
+            "wrongChars": "Email contains incorrect characters",
+            "alreadyExists": "User with this email already exists",
+            "default": "There was an error during registration. Try again later."
+        }
+    }
 }

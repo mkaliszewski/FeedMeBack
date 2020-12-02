@@ -80,6 +80,7 @@ passport.use(
             proxy: true,
         },
         (_accessToken: string, _refreshToken: string, profile: ProfileGoogle, done: VerifyCallback): void => {
+            console.log('here');
             handleSocialAuth(GOOGLE_DB_NAME, profile, done);
         }
     )
@@ -95,6 +96,7 @@ passport.use(
         },
 
         (_accessToken: string, _refreshToken: string, profile: ProfileFacebook, done: VerifyCallback) => {
+            console.log('here');
             handleSocialAuth(FACEBOOK_DB_NAME, profile, done);
         }
     )

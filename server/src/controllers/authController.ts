@@ -8,7 +8,7 @@ const authGoogle = passport.authenticate('google', { scope: ['email', 'profile']
 const authFacebook = passport.authenticate('facebook', { scope: ['email'] });
 
 const redirectToMain: interfaces.HTTPRequest = (req, res) => {
-    res.redirect('/');
+    return res.send('here');
 };
 
 const authLogin: interfaces.HTTPRequest = (req, res, next) => {

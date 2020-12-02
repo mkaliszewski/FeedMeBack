@@ -1,0 +1,25 @@
+@import '../../media.scss';
+
+.header {
+    @include flexBox(row, space-around, center);
+    border-radius: 0 !important;
+
+    .header__heading {
+        width: 180px;
+        margin: 0;
+        text-align: left;
+        color: $white;
+        letter-spacing: 1px;
+    }
+    .header__menu {
+        width: 360px;
+        margin-left: auto !important;
+        text-align: right;
+        margin: 0;
+    }
+
+    .item {
+        // width: 120px !important;
+        @include flexBox(row, center, center);
+    }
+}

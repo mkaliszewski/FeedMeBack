@@ -13,7 +13,7 @@ i18n.use(Backend)
         debug: true,
         ns: ['translations'],
         defaultNS: 'translations',
-        keySeparator: false,
+        keySeparator: '.',
         interpolation: {
             escapeValue: false,
             formatSeparator: ',',

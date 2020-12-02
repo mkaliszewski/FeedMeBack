@@ -75,7 +75,7 @@ const LanguageSelector: FC = () => {
         i18n.changeLanguage(value as Language);
     };
 
-    const labelText = `${t('language')} (${appLanguage})`;
+    const labelText = `${t('languageSelector.language')} (${appLanguage})`;
 
     return (
         <div className="language-selector">

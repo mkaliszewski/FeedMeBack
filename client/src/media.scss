@@ -1,8 +1,10 @@
 //breakpoints
-$breakpoint-sm: 600px;
-$breakpoint-md: 960px;
-$breakpoint-lg: 1280px;
-$breakpoint-xlg: 1920px;
+$breakpoint-xs: 480px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1600px;
 
 //media queries
 
@@ -22,7 +24,9 @@ $breakpoint-xlg: 1920px;
 
 @mixin flexBox($flexDir, $justifyContent, $alignItems) {
     display: flex !important;
-    flex-direction: $flexDir;
-    justify-content: $justifyContent;
-    align-items: $alignItems;
+    flex-direction: $flexDir !important;
+    justify-content: $justifyContent !important;
+    align-items: $alignItems !important;
 }
+
+$white: #fff;
