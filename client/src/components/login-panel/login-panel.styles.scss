@@ -1,0 +1,22 @@
+@import 'media.scss';
+
+.login-panel {
+    .login-panel__form {
+        @include flexBox(column, center, center);
+        width: 100%;
+
+        .login-panel__form-group {
+            @include flexBox(column, center, stretch);
+            width: 90%;
+
+            .field {
+                padding: 10px 6px;
+            }
+        }
+
+        .login-panel__submit-button {
+            width: 209px;
+            margin: 0;
+        }
+    }
+}

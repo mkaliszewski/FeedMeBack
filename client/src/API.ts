@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 export const API_ROUTES = {
-    LOGIN_USER: '/auth/login',
-    AUTH_GOOGLE: '/auth/google',
     AUTH_FACEBOOK: '/auth/facebook',
+    AUTH_GOOGLE: '/auth/google',
+    LOGIN_USER: '/auth/login',
     USER: '/api/user',
     LOGOUT_USER: '/api/user/logout',
 };

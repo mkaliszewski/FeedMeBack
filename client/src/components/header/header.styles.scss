@@ -1,4 +1,4 @@
-@import '../../media.scss';
+@import 'media.scss';
 
 .header {
     @include flexBox(row, space-around, center);
@@ -12,6 +12,7 @@
         letter-spacing: 1px;
     }
     .header__menu {
+        @include flexBox(row, flex-end, center);
         width: 360px;
         margin-left: auto !important;
         text-align: right;
@@ -19,7 +20,6 @@
     }
 
     .item {
-        // width: 120px !important;
         @include flexBox(row, center, center);
     }
 }

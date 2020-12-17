@@ -1,0 +1,11 @@
+@import 'media.scss';
+
+.heading-block {
+    .heading-block__icon {
+        font-size: 2em !important;
+
+        @include mediaQuery($breakpoint-md) {
+            font-size: 2.5em !important;
+        }
+    }
+}

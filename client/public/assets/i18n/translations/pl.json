@@ -5,9 +5,12 @@
     "header": {
         "about": "O nas",
         "login": "Login",
-        "registration": "Rejestracja"
+        "registration": "Rejestracja",
+        "account": "Konto",
+        "logout": "Wyloguj"
     },
     "registration": {
+        "subHeading": "Dołącz już dziś i zacznij zbierać feedback od swoich klientów!",
         "username": "Nazwa użytkownika",
         "email": "E-mail",
         "password": "Hasło",
@@ -24,6 +27,23 @@
             "wrongChars": "Email zawiera niedozwolone znaki",
             "alreadyExists": "Użytkownik o podanym adresie email już istnieje",
             "default": "Wystąpił błąd podczas rejestracji. Spróbuj ponownie później."
+        }
+    },
+    "login": {
+        "subHeading": "Po raz kolejny u nas? Świetnie! Zaloguj się do konta i korzystaj z pełnej funkcjonalności.",
+        "email": "E-mail",
+        "password": "Hasło",
+        "hasAccount": "Jeśli nie masz konta",
+        "logIn": "Zaloguj się",
+        "createAcc": "załóż konto",
+        "register": "zarejestruj się",
+        "errors": {
+            "required": "To pole jest wymagane",
+            "passwordLength": "Hasło powinno mieć conamniej 8 znaków",
+            "wrongChars": "Email zawiera niedozwolone znaki",
+            "doesntExist": "Użytkownik o podanym adresie email nie istnieje",
+            "doesntMatch": "Hasło nie pasuje do podanego adresu email",
+            "default": "Wystąpił błąd podczas logowania. Spróbuj ponownie później."
         }
     }
 }

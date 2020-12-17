@@ -5,9 +5,12 @@
     "header": {
         "about": "Über uns",
         "login": "Einloggen",
-        "registration": "Registieren"
+        "registration": "Registieren",
+        "account": "Konto",
+        "logout": "Ausloggen"
     },
     "registration": {
+        "subHeading": "Melden Sie sich noch heute an und sammeln Sie Feedback von Ihren Kunden!",
         "username": "Nutzername",
         "email": "E-mail",
         "password": "Passwort",
@@ -24,6 +27,23 @@
             "wrongChars": "E-Mail enthält falsche Zeichen",
             "alreadyExists": "Ein Benutzer existiert bereits mit dieser E-Mail-Adresse",
             "default": "Bei der Registrierung ist ein Fehler aufgetreten. Versuchen Sie es später erneut."
+        }
+    },
+    "login": {
+        "subHeading": "Noch einmal bei uns? Toll! Melden Sie sich bei Ihrem Konto an und nutzen Sie die volle Funktionalität.",
+        "email": "E-mail",
+        "password": "Passwort",
+        "hasAccount": "Wenn Sie kein Konto haben",
+        "logIn": "Einloggen",
+        "createAcc": "registieren",
+        "register": "Registieren",
+        "errors": {
+            "required": "Dieses Feld wird benötigt",
+            "passwordLength": "Das Passwort sollte mindestens 8 Zeichen lang sein",
+            "wrongChars": "E-Mail enthält falsche Zeichen",
+            "doesntExist": "Benutzer mit gegebener E-Mail existiert nicht",
+            "doesntMatch": "Das Passwort stimmt nicht mit der angegebenen E-Mail-Adresse überein",
+            "default": "Beim Anmelden ist ein Fehler aufgetreten. Versuchen Sie es später erneut."
         }
     }
 }

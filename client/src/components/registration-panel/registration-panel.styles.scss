@@ -1,4 +1,4 @@
-@import '../../media.scss';
+@import 'media.scss';
 
 .registration-panel {
     .registration-panel__form {
@@ -15,24 +15,8 @@
         }
 
         .registration-panel__submit-button {
-            min-width: 200px;
+            width: 209px;
             margin: 0;
-        }
-    }
-
-    .registration-panel__login-container {
-        text-align: center;
-        margin-top: 12px;
-
-        .registration-panel__buttons-container {
-            @include flexBox(column, center, center);
-
-            @include mediaQuery($breakpoint-md) {
-                @include flexBox(row, center, center);
-            }
-            & * {
-                margin-top: 6px;
-            }
         }
     }
 }

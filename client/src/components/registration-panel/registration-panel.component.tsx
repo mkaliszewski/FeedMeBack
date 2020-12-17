@@ -1,37 +1,45 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import { Container, Segment, Form, Button, Icon, Message, InputOnChangeData } from 'semantic-ui-react';
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import { Container, Segment, Form, Button, Message, InputOnChangeData } from 'semantic-ui-react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import routes from 'routeConstants';
-import API, { API_ROUTES } from 'API';
+import { useDispatch, useSelector } from 'react-redux';
+import { State } from 'redux/root-reducer.types';
+import { registerUserAsync, clearUserErrors } from 'redux/user/user.actions';
+
+import AuthButtons from 'components/shared/auth-buttons/auth-buttons.component';
 import './registration-panel.styles.scss';
 
 interface FormData {
-    username?: string;
-    email?: string;
-    password?: string;
-    repeatPassword?: string;
+    username: string;
+    email: string;
+    password: string;
+    repeatPassword: string;
 }
 
-const RegistrationPanel: FC<RouteComponentProps> = ({ history }) => {
-    const { Group, Input } = Form;
-    const { t } = useTranslation();
-    const {
-        register,
-        errors,
-        handleSubmit,
-        setValue,
-        trigger,
-        watch,
-        setError,
-        formState: { isSubmitSuccessful },
-        reset,
-    } = useForm();
+/**
+ * Component used as registration panel
+ *
+ *
+ * @return  {FC} RegistrationPanel component
+ *
+ * @component
+ * @example
+ *
+ * return (
+ *    <RegistrationPanel />
+ * )
+ *
+ */
 
-    const [submittedData, setSubmittedData] = useState<FormData>({});
+const RegistrationPanel: FC<RouteComponentProps> = ({ history }) => {
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const { responseMessage, isLoading, isError, errorCode } = useSelector((state: State) => state.user);
+
+    const { register, errors, handleSubmit, setValue, trigger, watch, setError } = useForm();
+
     const [submitError, setSubmitError] = useState<string | undefined>(undefined);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         register(
@@ -48,10 +56,6 @@ const RegistrationPanel: FC<RouteComponentProps> = ({ history }) => {
             { name: 'email' },
             {
                 required: t('registration.errors.required') as string,
-                pattern: {
-                    value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-                    message: t('registration.errors.wrongChars'),
-                },
             }
         );
         register(
@@ -77,18 +81,45 @@ const RegistrationPanel: FC<RouteComponentProps> = ({ history }) => {
                 },
             }
         );
-    });
+    }, []);
 
     useEffect(() => {
-        if (isSubmitSuccessful) {
-            reset({ ...submittedData });
+        if (!isError && typeof responseMessage === 'string') {
+            history.push('/login');
         }
-    }, [isSubmitSuccessful, submittedData, reset]);
+
+        if (isError) {
+            if (errorCode === 409) {
+                setError('email', {
+                    type: 'existingUser',
+                    message: t('registration.errors.alreadyExists'),
+                });
+            } else {
+                setSubmitError(t('registration.errors.default'));
+            }
+        }
+
+        return () => {
+            dispatch(clearUserErrors());
+        };
+    }, [isError, responseMessage]);
 
     const handleChange = (_event: ChangeEvent<HTMLInputElement>, data: InputOnChangeData): void => {
         const { name, value } = data;
+
+        if (name === 'email') {
+            setValue(name, value.toLowerCase());
+        }
+
         setValue(name, value);
+
         trigger(name);
+    };
+
+    const onSubmit = async (data: FormData): Promise<void> => {
+        const { email, username, password } = data;
+
+        dispatch(registerUserAsync(email, username, password));
     };
 
     const getErrorMessage = (item: string) =>
@@ -97,31 +128,7 @@ const RegistrationPanel: FC<RouteComponentProps> = ({ history }) => {
             pointing: 'below',
         };
 
-    const onSubmit = async (data: any): Promise<string | void> => {
-        setIsLoading(true);
-        const { email, username, password } = data;
-
-        setSubmittedData(data);
-        const { status } = await API.registerUser({ email, username, password });
-
-        if (status === 409) {
-            setIsLoading(false);
-            return setError('email', {
-                type: 'existingUser',
-                message: t('registration.errors.alreadyExists'),
-            });
-        }
-
-        if (status !== 201) {
-            setIsLoading(false);
-            setSubmittedData({});
-            return setSubmitError(t('registration.errors.default'));
-        }
-
-        setIsLoading(false);
-        return history.push('/login');
-    };
-
+    const { Group, Input } = Form;
     return (
         <Container className="registration-panel" text>
             <Segment padded>
@@ -163,7 +170,7 @@ const RegistrationPanel: FC<RouteComponentProps> = ({ history }) => {
                             name="repeatPassword"
                             type="password"
                             label={t('registration.repeatPassword')}
-                            placeholder={`${t('registration.password')}...`}
+                            placeholder={`${t('registration.repeatPassword')}...`}
                             onChange={handleChange}
                             error={getErrorMessage('repeatPassword')}
                             required
@@ -174,20 +181,8 @@ const RegistrationPanel: FC<RouteComponentProps> = ({ history }) => {
                     </Button>
                     {submitError && <Message negative header="Ooops..." content={submitError} />}
                 </Form>
-                <Container className="registration-panel__login-container">
-                    {t('registration.hasAccount')} <Link to={routes.login.route}>{t('registration.logIn')}</Link>{' '}
-                    {t('registration.or')}:
-                    <Container className="registration-panel__buttons-container">
-                        <Button color="facebook" href={API_ROUTES.AUTH_FACEBOOK}>
-                            <Icon name="facebook" /> Facebook
-                        </Button>
-                        <Button color="google plus" href={API_ROUTES.AUTH_GOOGLE}>
-                            <Icon name="google" /> Google
-                        </Button>
-                    </Container>
-                </Container>
+                <AuthButtons page="registration" />
             </Segment>
-            <a href="/auth/google">G</a>
         </Container>
     );
 };

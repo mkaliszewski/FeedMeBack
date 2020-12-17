@@ -6,9 +6,12 @@
     "header": {
         "about": "About",
         "login": "Login",
-        "registration": "Registration"
+        "registration": "Registration",
+        "account": "Account",
+        "logout": "Logout"
     },
     "registration": {
+        "subHeading": "Join today and start collecting feedback from your customers!",
         "username": "Username",
         "email": "E-mail",
         "password": "Password",
@@ -25,6 +28,23 @@
             "wrongChars": "Email contains incorrect characters",
             "alreadyExists": "User with this email already exists",
             "default": "There was an error during registration. Try again later."
+        }
+    },
+    "login": {
+        "subHeading": "Once again with us? Great! Log in to your account and use the full functionality.",
+        "email": "E-mail",
+        "password": "Password",
+        "hasAccount": "If you don't have an account",
+        "logIn": "Log in",
+        "createAcc": "sign up",
+        "register": "register",
+        "errors": {
+            "required": "This field is required",
+            "passwordLength": "Password should have at least 8 characters",
+            "wrongChars": "Email contains incorrect characters",
+            "doesntExist": "User with given email doesn't exist",
+            "doesntMatch": "The password does not match the email address provided",
+            "default": "There was an error during logging in. Try again later."
         }
     }
 }

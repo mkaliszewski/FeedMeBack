@@ -1,32 +1,81 @@
-import { UserState, UserActions, userActionTypes } from './user.types';
+import { userActionTypes, UserState, UserActions } from './user.types';
 
 const INITIAL_STATE: UserState = {
-    currentUser: null,
-    isFetching: false,
-    errorMessage: '',
+    currentUser: undefined,
+    responseMessage: null,
+    isLoading: false,
+    isError: false,
+    errorCode: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action: UserActions): UserState => {
     switch (action.type) {
-        case userActionTypes.FETCH_USER_START:
+        case userActionTypes.START_USER_ACTION:
             return {
                 ...state,
-                isFetching: true,
+                isLoading: true,
+            };
+
+        case userActionTypes.CLEAR_USER_ERRORS:
+            return {
+                ...state,
+                responseMessage: null,
+                isError: false,
+                errorCode: null,
             };
 
         case userActionTypes.FETCH_USER_SUCCESS:
             return {
-                ...state,
                 currentUser: action.payload,
-                isFetching: false,
+                responseMessage: null,
+                isLoading: false,
+                isError: false,
+                errorCode: null,
             };
 
         case userActionTypes.FETCH_USER_FAILURE:
             return {
                 ...state,
-                currentUser: null,
-                isFetching: false,
-                errorMessage: action.payload,
+                currentUser: undefined,
+                responseMessage: null,
+                isLoading: false,
+                isError: true,
+            };
+
+        case userActionTypes.REGISTER_USER_SUCCESS:
+            return {
+                ...state,
+                responseMessage: action.payload,
+                isLoading: false,
+                isError: false,
+                errorCode: null,
+            };
+
+        case userActionTypes.REGISTER_USER_FAILURE:
+            return {
+                ...state,
+                responseMessage: null,
+                isLoading: false,
+                isError: true,
+                errorCode: action.payload,
+            };
+
+        case userActionTypes.LOGIN_USER_SUCCESS:
+            return {
+                ...state,
+                responseMessage: action.payload,
+                isLoading: false,
+                isError: false,
+                errorCode: null,
+            };
+
+        case userActionTypes.LOGIN_USER_FAILURE:
+            return {
+                ...state,
+                responseMessage: null,
+                isLoading: false,
+                isError: true,
+                errorCode: action.payload,
             };
 
         default:

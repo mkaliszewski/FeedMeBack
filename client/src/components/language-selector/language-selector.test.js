@@ -1,12 +1,11 @@
 import React from 'react';
-import { Simulate } from 'react-dom/test-utils';
-import { render, fireEvent, within, waitFor, getByLabelText } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { toBeInTheDocument } from '@testing-library/jest-dom';
-import '__test__/mocks/i18next-mock';
+
 import LanguageSelector from './language-selector';
 
-const renderLanguageSelector = (props) => {
-    const utils = render(<LanguageSelector {...props} />);
+const renderLanguageSelector = () => {
+    const utils = render(<LanguageSelector />);
     return { ...utils };
 };
 
@@ -14,12 +13,8 @@ const englishText = 'EN';
 const polishText = 'PL';
 const germanyText = 'DE';
 
-const englishAlt = 'en flag icon';
-const polishAlt = 'pl flag icon';
-const germanyAlt = 'de flag icon';
-
-const englishLabel = 'language (en)';
-const polishLabel = 'language (pl)';
+const englishLabel = 'languageSelector.language (en)';
+const polishLabel = 'languageSelector.language (pl)';
 const listBoxRole = 'listbox';
 
 describe('LanguageSelector', () => {
