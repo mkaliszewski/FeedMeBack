@@ -24,7 +24,6 @@
         ],
         "coveragePathIgnorePatterns": [
             "<rootDir>/src/__test__",
-            "<rootDir>/src/redux",
             "<rootDir>/src/i18n.ts",
             "<rootDir>/src/index.js",
             "<rootDir>/src/setupProxy.js",
@@ -80,6 +79,7 @@
         "@types/react-router": "^5.1.8",
         "@types/react-router-dom": "^5.1.6",
         "@types/redux-logger": "^3.0.8",
+        "@types/redux-mock-store": "^1.0.2",
         "@typescript-eslint/eslint-plugin": "^4.0.1",
         "@typescript-eslint/parser": "^4.0.1",
         "better-docs": "^2.3.2",
@@ -99,6 +99,7 @@
         "jsdoc": "^3.6.6",
         "node-fetch": "^2.6.1",
         "prettier": "^2.1.2",
+        "redux-mock-store": "^1.5.4",
         "typescript": "^4.0.5"
     }
 }

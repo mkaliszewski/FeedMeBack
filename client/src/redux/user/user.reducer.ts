@@ -40,6 +40,7 @@ const userReducer = (state = INITIAL_STATE, action: UserActions): UserState => {
                 responseMessage: null,
                 isLoading: false,
                 isError: true,
+                errorCode: action.payload,
             };
 
         case userActionTypes.REGISTER_USER_SUCCESS:

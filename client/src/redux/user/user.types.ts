@@ -5,8 +5,8 @@ export const userActionTypes = {
     FETCH_USER_FAILURE: 'FETCH_USER_FAILURE',
     REGISTER_USER_SUCCESS: 'REGISTER_USER_SUCCESS',
     REGISTER_USER_FAILURE: 'REGISTER_USER_FAILURE',
-    LOGIN_USER_FAILURE: 'LOGIN_USER_FAILURE',
     LOGIN_USER_SUCCESS: 'LOGIN_USER_SUCCESS',
+    LOGIN_USER_FAILURE: 'LOGIN_USER_FAILURE',
 };
 
 export interface User {
@@ -52,7 +52,7 @@ export interface FetchUserSuccessAction {
 }
 export interface FetchUserFailureAction {
     type: typeof userActionTypes.FETCH_USER_FAILURE;
-    payload?: any;
+    payload: number;
 }
 
 export type FetchUserActions = FetchUserSuccessAction | FetchUserFailureAction;

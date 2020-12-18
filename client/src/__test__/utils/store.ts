@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from 'redux/root-reducer';
 import { State } from 'redux/root-reducer.types';
 
-const defaultStoreData = {
+const initialState = {
     user: {
         currentUser: undefined,
         responseMessage: null,
@@ -13,6 +13,6 @@ const defaultStoreData = {
     },
 };
 
-const mockStore = (data: State = defaultStoreData): Store => createStore(rootReducer, data, applyMiddleware(thunk));
+const mockStore = (data: State = initialState): Store => createStore(rootReducer, data, applyMiddleware(thunk));
 
-export { defaultStoreData, mockStore };
+export { initialState, mockStore };

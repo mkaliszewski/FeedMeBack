@@ -28,8 +28,9 @@ export const fetchUserSuccess = (user: User): FetchUserActions => ({
     payload: user,
 });
 
-export const fetchUserFailure = (): FetchUserActions => ({
+export const fetchUserFailure = (errorCode: number): FetchUserActions => ({
     type: userActionTypes.FETCH_USER_FAILURE,
+    payload: errorCode,
 });
 
 export const RegisterUserSuccess = (message: string): RegisterUserActions => ({
@@ -55,11 +56,17 @@ export const fetchUserAsync = (): ThunkAction<void, RootState, unknown, Action> 
     dispatch(startUserAction());
     try {
         const response = await API.fetchUser();
+        const { status } = response;
         const { user }: Response = await response.json();
-        return dispatch(fetchUserSuccess(user));
+
+        if (status === 200) {
+            return dispatch(fetchUserSuccess(user));
+        }
+
+        return dispatch(fetchUserFailure(status));
     } catch (err) {
         console.error(err);
-        return dispatch(fetchUserFailure());
+        return dispatch(fetchUserFailure(DEFAULT_ERROR_CODE));
     }
 };
 
@@ -98,7 +105,7 @@ export const loginUserAsync = (
 
         if (status === 200) {
             dispatch(fetchUserAsync());
-            dispatch(LoginUserSuccess(message));
+            return dispatch(LoginUserSuccess(message));
         }
 
         return dispatch(LoginUserFailure(status));

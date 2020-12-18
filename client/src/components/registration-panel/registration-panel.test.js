@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { mockStore } from '__test__/mocks/mockStore';
+import { mockStore } from '__test__/utils/store';
 import { toBeInTheDocument } from '@testing-library/jest-dom';
 import { API_ROUTES } from 'API';
 import renderWithRouter from '__test__/utils/renderWithRouter';
@@ -9,9 +9,11 @@ import mockRequest from '__test__/utils/fetchMock';
 
 import RegistrationPanel from './registration-panel.component';
 
-const renderRegistrationPanel = (storeData) => {
+const store = mockStore();
+
+const renderRegistrationPanel = () => {
     const utils = renderWithRouter(
-        <Provider store={mockStore(storeData)}>
+        <Provider store={store}>
             <RegistrationPanel />
         </Provider>
     );

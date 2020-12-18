@@ -2,14 +2,16 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { toBeInTheDocument } from '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
-import { mockStore } from '__test__/mocks/mockStore';
+import { mockStore } from '__test__/utils/store';
 import renderWithRouter from '__test__/utils/renderWithRouter';
 
 import LoginPage from './login.page';
 
+const store = mockStore();
+
 const renderLoginPage = () => {
     const utils = renderWithRouter(
-        <Provider store={mockStore()}>
+        <Provider store={store}>
             <LoginPage />
         </Provider>
     );

@@ -11,6 +11,7 @@ const mockRequest: FetchMock = (reqType = 'get', route = '/', status, data) => {
         body: {
             ...data,
         },
+        headers: { 'content-type': 'application/json' },
     });
 };
 

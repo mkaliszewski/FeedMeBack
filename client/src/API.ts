@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-
 export const API_ROUTES = {
     AUTH_FACEBOOK: '/auth/facebook',
     AUTH_GOOGLE: '/auth/google',
@@ -31,18 +29,18 @@ interface LoginUserData {
 }
 
 const API = {
-    fetchUser: () =>
+    fetchUser: (): Promise<Response> =>
         fetch(API_ROUTES.USER, {
             method: METHODS.GET,
             headers: HEADERS,
         }),
-    registerUser: (data: RegisterUserData) =>
+    registerUser: (data: RegisterUserData): Promise<Response> =>
         fetch(API_ROUTES.USER, {
             method: METHODS.POST,
             body: stringifyData(data),
             headers: HEADERS,
         }),
-    loginUser: (data: LoginUserData) =>
+    loginUser: (data: LoginUserData): Promise<Response> =>
         fetch(API_ROUTES.LOGIN_USER, {
             method: METHODS.POST,
             body: stringifyData(data),

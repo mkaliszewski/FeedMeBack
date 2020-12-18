@@ -3,7 +3,7 @@ import renderWithRouter from '__test__/utils/renderWithRouter';
 import { Provider } from 'react-redux';
 import { fireEvent } from '@testing-library/react';
 import { toBeInTheDocument } from '@testing-library/jest-dom';
-import { mockStore } from '__test__/mocks/mockStore';
+import { mockStore } from '__test__/utils/store';
 import routes from 'routeConstants';
 
 import Header from './header.component';

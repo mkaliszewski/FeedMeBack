@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, waitFor, screen, act } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { mockStore } from '__test__/mocks/mockStore';
+import { mockStore } from '__test__/utils/store';
 import { toBeInTheDocument } from '@testing-library/jest-dom';
 import { API_ROUTES } from 'API';
 import renderWithRouter from '__test__/utils/renderWithRouter';
@@ -10,10 +10,11 @@ import mockRequest from '__test__/utils/fetchMock';
 import LoginPanel from './login-panel.component';
 
 const initialRoute = '/login';
+const store = mockStore();
 
-const renderLoginPanel = (storeData) => {
+const renderLoginPanel = () => {
     const utils = renderWithRouter(
-        <Provider store={mockStore(storeData)}>
+        <Provider store={store}>
             <LoginPanel />
         </Provider>,
         { route: initialRoute }
@@ -93,6 +94,7 @@ describe('LoginPanel', () => {
 
     it('redirects to main page after succesfull login', async () => {
         const { getByLabelText, getByText, history } = renderLoginPanel();
+
         mockRequest('post', API_ROUTES.LOGIN_USER, 200, { message: 'Login completed' });
         mockRequest('get', API_ROUTES.USER, 200, { user: 'example user' });
 
