@@ -7,7 +7,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/userModel');
-
+const { RESPONSE_MESSAGES } = require('../helpers/consts');
 const { GOOGLE_AUTH_ID, GOOGLE_AUTH_SECRET, FACEBOOK_AUTH_ID, FACEBOOK_AUTH_SECRET } = require('../config/keys');
 
 type ErrorType = null | Error | string;
@@ -56,7 +56,7 @@ const handleLoginAuth = async (email: string, password: string, done: VerifyCall
         const user = await User.findOne({ email });
 
         if (!user) {
-            return done(null, false, 'Brak użytkownika o podanym adresie email');
+            return done(null, false, RESPONSE_MESSAGES.NOT_FOUND);
         }
 
         const isPasswordMatched = await bcrypt.compare(password, user.password);
@@ -65,7 +65,7 @@ const handleLoginAuth = async (email: string, password: string, done: VerifyCall
             return done(null, user);
         }
 
-        return done(null, false, 'Podane hasło nie pasuje do adresu email');
+        return done(null, false, RESPONSE_MESSAGES.PASSWORD_DOESNT_MATCH);
     } catch (err) {
         return done(err, false);
     }
@@ -80,7 +80,6 @@ passport.use(
             proxy: true,
         },
         (_accessToken: string, _refreshToken: string, profile: ProfileGoogle, done: VerifyCallback): void => {
-            console.log('here');
             handleSocialAuth(GOOGLE_DB_NAME, profile, done);
         }
     )
@@ -96,7 +95,7 @@ passport.use(
         },
 
         (_accessToken: string, _refreshToken: string, profile: ProfileFacebook, done: VerifyCallback) => {
-            console.log('here');
+            console.log(profile);
             handleSocialAuth(FACEBOOK_DB_NAME, profile, done);
         }
     )

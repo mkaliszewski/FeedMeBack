@@ -42,7 +42,7 @@ const updateUser: interfaces.HTTPAsyncRequest = async (req, res) => {
         user,
     } = req;
 
-    if (!user || !username || !password) {
+    if (!username || !password) {
         return sendResponse(res, RESPONSE_MESSAGES.NOT_FOUND);
     }
 
@@ -59,10 +59,6 @@ const updateUser: interfaces.HTTPAsyncRequest = async (req, res) => {
 const deleteUser: interfaces.HTTPAsyncRequest = async (req, res) => {
     const { user } = req;
 
-    if (!user) {
-        return sendResponse(res, RESPONSE_MESSAGES.NOT_FOUND);
-    }
-
     try {
         const result = await userService.deleteUser(user);
 
@@ -75,10 +71,6 @@ const deleteUser: interfaces.HTTPAsyncRequest = async (req, res) => {
 
 const getUserImage: interfaces.HTTPAsyncRequestWithFile = async (req, res) => {
     const { user } = req;
-
-    if (!user) {
-        return sendResponse(res, RESPONSE_MESSAGES.NOT_FOUND);
-    }
 
     try {
         const result = await userService.getUserImage(user);
@@ -97,10 +89,6 @@ const updateUserImage: interfaces.HTTPAsyncRequestWithFile = async (req, res) =>
     const fileName = req.file ? req.file.filename : null;
     const { user } = req;
 
-    if (!user) {
-        return sendResponse(res, RESPONSE_MESSAGES.NOT_FOUND);
-    }
-
     try {
         const result = await userService.updateUserImage(fileName, user);
 
@@ -113,10 +101,6 @@ const updateUserImage: interfaces.HTTPAsyncRequestWithFile = async (req, res) =>
 
 const deleteUserImage: interfaces.HTTPAsyncRequest = async (req, res) => {
     const { user } = req;
-
-    if (!user) {
-        return sendResponse(res, RESPONSE_MESSAGES.NOT_FOUND);
-    }
 
     try {
         const result = await userService.deleteUserImage(user);

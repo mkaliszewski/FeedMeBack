@@ -5,19 +5,21 @@ const { sendResponse } = require('../helpers/response');
 const { RESPONSE_MESSAGES } = require('../helpers/consts');
 
 const authGoogle = passport.authenticate('google', { scope: ['email', 'profile'] });
+const authGoogleCallback = passport.authenticate('google');
 const authFacebook = passport.authenticate('facebook', { scope: ['email'] });
+const authFacebookCallback = passport.authenticate('facebook', { scope: ['email'] });
 
 const redirectToMain: interfaces.HTTPRequest = (req, res) => {
-    return res.send('here');
+    return res.redirect('/');
 };
 
 const authLogin: interfaces.HTTPRequest = (req, res, next) => {
-    passport.authenticate('local', (err, user, _info) => {
+    passport.authenticate('local', (err, user, info) => {
         if (err) {
             return next(err);
         }
         if (!user) {
-            return sendResponse(res, RESPONSE_MESSAGES.NOT_FOUND);
+            return sendResponse(res, info);
         }
         return req.login(user, (error) => {
             if (error) return sendResponse(res, RESPONSE_MESSAGES.ERROR);
@@ -29,7 +31,9 @@ const authLogin: interfaces.HTTPRequest = (req, res, next) => {
 
 module.exports = {
     authGoogle,
+    authGoogleCallback,
     authFacebook,
+    authFacebookCallback,
     redirectToMain,
     authLogin,
 };

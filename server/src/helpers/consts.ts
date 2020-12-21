@@ -13,6 +13,7 @@ const RESPONSE_MESSAGES = {
     DELETED: 'Deleted',
     NOT_FOUND: 'Not found',
     ALREADY_EXISTS: 'This user already exists',
+    PASSWORD_DOESNT_MATCH: `Password doesn't match to given email`,
     ERROR: 'Something went wrong!',
 };
 
@@ -22,6 +23,7 @@ const RESPONSE_STATUSES = {
     RESPONSE_MESSAGES.UPDATED ||
     RESPONSE_MESSAGES.DELETED]: 200,
     [RESPONSE_MESSAGES.CREATED]: 201,
+    [RESPONSE_MESSAGES.PASSWORD_DOESNT_MATCH]: 401,
     [RESPONSE_MESSAGES.NOT_FOUND]: 404,
     [RESPONSE_MESSAGES.ALREADY_EXISTS]: 409,
     [RESPONSE_MESSAGES.ERROR]: 500,
